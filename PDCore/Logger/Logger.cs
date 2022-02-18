@@ -1,18 +1,10 @@
 ﻿using System;
-namespace mqtt
+namespace PDCore.Logger
 {
-    public enum Level
-    {
-		debug = 0,
-		info = 1,
-		warning = 2,
-		error = 3,
-		silence = 4
-    }
+    
 
-	public class Logger
+	public class Logger : ILogger
 	{
-		string _name = "module";
 
 		public Level LogLevel { get; set; } = Level.info;
 
