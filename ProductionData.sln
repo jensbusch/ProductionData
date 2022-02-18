@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDBroker", "PDBroker\PDBrok
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDClient", "PDClient\PDClient.csproj", "{CDEBD6BD-166E-4D60-8702-FCCC6B1FF82A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDCore", "PDCore\PDCore.csproj", "{766843FB-4DE7-4E28-BD79-073DD2A88DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CDEBD6BD-166E-4D60-8702-FCCC6B1FF82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEBD6BD-166E-4D60-8702-FCCC6B1FF82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEBD6BD-166E-4D60-8702-FCCC6B1FF82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766843FB-4DE7-4E28-BD79-073DD2A88DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766843FB-4DE7-4E28-BD79-073DD2A88DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766843FB-4DE7-4E28-BD79-073DD2A88DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766843FB-4DE7-4E28-BD79-073DD2A88DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
