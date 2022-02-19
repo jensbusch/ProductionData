@@ -12,9 +12,15 @@ namespace PDCore.Logger
 	}
 
 
-	public interface ILogger
-	{
+    public interface ILogger
+    {
+        Level LogLevel { get; set; }
+		void Information(string logMessage, params object?[]? args);
+        void Error(string logMessage, params object?[]? args);
+        void Debug(string logMessage, params object?[]? args);
+        void Warning(string logMessage, params object?[]? args);
+    }
 
-	}
+
 }
 

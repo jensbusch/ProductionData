@@ -9,11 +9,17 @@
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />
     <None Remove="Logger\" />
+    <None Remove="MqTT\" />
+    <None Remove="MQTTnet.Extensions.ManagedClient" />
+    <None Remove="MQTTnet" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="3.1.2" />
+    <PackageReference Include="MQTTnet" Version="3.1.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logger\" />
+    <Folder Include="MqTT\" />
   </ItemGroup>
 </Project>

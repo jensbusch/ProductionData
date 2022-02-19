@@ -3,12 +3,15 @@ using System.Text;
 using MQTTnet;
 using MQTTnet.Server;
 
-namespace mqtt
+// other pdcore components
+using PDCore.Logger;
+
+namespace PDCore.MqTT
 {
 	public class MessageBroker
 	{
         readonly MqttServerOptionsBuilder _options;
-        Logger _logger;
+        ILogger _logger;
 		int _brokerPort = 707;
         IMqttServer _mqttServer;
 
@@ -17,7 +20,7 @@ namespace mqtt
 
         public MessageBroker(int brokerPort = 707, bool start = true)
 		{
-            _logger = Logger.GetInstance;
+            _logger = ConsoleLogger.GetInstance;
             _brokerPort = brokerPort;
 			_options = new MqttServerOptionsBuilder()
                             // set endpoint to localhost
@@ -51,27 +54,36 @@ namespace mqtt
 
         public void OnNewMessage(MqttApplicationMessageInterceptorContext context)
         {
-            string? payload = context.ApplicationMessage?.Payload == null ? null : Encoding.UTF8.GetString(context.ApplicationMessage.Payload);
+            string? payload = context.ApplicationMessage?.Payload == null
+                            ? null :
+                            Encoding.UTF8.GetString(context.ApplicationMessage.Payload);
+
+            if (string.IsNullOrEmpty(context.ClientId))
+                return;
 
             MessageCounter++;
 
             _logger.Information(
-                "MessageId: {0} - TimeStamp: {1} -- Message: ClientId = {2}, Topic = {3}, Payload = {4}, QoS = {5}, Retain-Flag = {6}",
+                "MessageId: {0} - TimeStamp: {1} -- Message: ClientId = {2}, Topic = {3}, Payload = {4}, QoS = {5}, Retain-Flag = {6} response-topic = {7}",
                 MessageCounter,
                 DateTime.Now,
                 context.ClientId,
                 context.ApplicationMessage?.Topic,
                 payload,
                 context.ApplicationMessage?.QualityOfServiceLevel,
-                context.ApplicationMessage?.Retain);
+                context.ApplicationMessage?.Retain,
+                context.ApplicationMessage?.ResponseTopic);
 
-            var message = new MqttApplicationMessageBuilder()
-                    .WithTopic("response/"+context.ApplicationMessage?.Topic)
-                    .WithPayload("published message received")
-                    .WithExactlyOnceQoS()
-                    .WithRetainFlag()
-                    .Build();
-            _mqttServer.PublishAsync(message);
+            if (string.IsNullOrEmpty(context.ApplicationMessage?.ResponseTopic))
+            {
+                var message = new MqttApplicationMessageBuilder()
+                        .WithTopic(context.ApplicationMessage?.ResponseTopic)
+                        .WithPayload("published message received")
+                        .WithExactlyOnceQoS()
+                        .WithRetainFlag()
+                        .Build();
+                _mqttServer.PublishAsync(message);
+            }
         }
     }
 }

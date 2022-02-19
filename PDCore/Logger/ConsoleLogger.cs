@@ -1,26 +1,27 @@
 ﻿using System;
+
 namespace PDCore.Logger
 {
     
 
-	public class Logger : ILogger
+	public class ConsoleLogger : ILogger
 	{
 
 		public Level LogLevel { get; set; } = Level.info;
 
-		private static Logger? _instance = null;
+		private static ConsoleLogger? _instance = null;
 
-		public static Logger GetInstance
+		public static ConsoleLogger GetInstance
 		{
 			get
 			{
 				if (_instance == null)
-					_instance = new Logger();
+					_instance = new ConsoleLogger();
 				return _instance;
 			}
 		}
 
-		private Logger()
+		private ConsoleLogger()
 		{
 		}
 
