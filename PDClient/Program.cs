@@ -36,7 +36,7 @@ namespace PDClient // Note: actual namespace depends on the project name.
             Stopwatch stopWatch = new Stopwatch();
             bool exit = false;
 
-            Console.WriteLine("Press 'quit' to terminat the broker");
+            Console.WriteLine("Type 'quit' + return to terminat the production date client");
             while (!exit)
             {
                 string? text = Console.ReadLine();
