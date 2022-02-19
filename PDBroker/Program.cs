@@ -24,7 +24,7 @@ namespace PDBroker // Note: actual namespace depends on the project name.
 
             bool exit = false;
 
-            Console.WriteLine("Press 'quit' to terminat the broker");
+            Console.WriteLine("Type 'quit' + return to terminat the broker");
             while (!exit)
             {
                 string? text = Console.ReadLine();
